@@ -4,7 +4,7 @@ This cookbook configures ssh.  It has recipes for both the ssh_config and the ss
 
 Requirements
 ------------
-This cookbook currently makes some assumptions.  It assumes that the install is setup in such a way that the config files can be found under /etc/ssh.
+This cookbook has no requirements except that ssh is installed.
 
 Attributes
 ----------
