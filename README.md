@@ -8,42 +8,12 @@ This cookbook currently makes some assumptions.  It assumes that the install is 
 
 Attributes
 ----------
-TODO
+See attributes/default.rb for default values.
 
-e.g.
-#### ssh::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['ssh']['config_location']</tt></td>
-    <td>String</td>
-    <td>The path to where ssh config files are located.</td>
-    <td><tt>/etc/ssh</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['ssh']['sshd']['port']</tt></td>
-    <td>Integer</td>
-    <td>The port the ssh daemon should listen on.</td>
-    <td><tt>22</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['ssh']['sshd']['x11_forwarding']</tt></td>
-    <td>yes/no</td>
-    <td>Whether or not X11Forwarding should be allowed.</td>
-    <td><tt>no</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['ssh']['sshd']['password_authentication']</tt></td>
-    <td>yes/no</td>
-    <td>Whether or not password authentication should be allowed.  Although it is yes by default, it is recommended to change it to false once a user with an appropriate key is setup.</td>
-    <td><tt>yes</tt></td>
-  </tr>
-</table>
+* `node['ssh']['config_location']` - The location of the config files.
+* `node['ssh']['sshd']['port']` - The port the ssh daemon will listen on.
+* `node['ssh']['sshd']['x11_forwarding']` - Whether or not X11Forwarding should be allowed.
+* `node['ssh']['sshd']['password_authentication']` - Whether or not password authentication is allowed.
 
 Usage
 -----
