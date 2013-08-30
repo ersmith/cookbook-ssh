@@ -26,19 +26,19 @@ e.g.
     <td><tt>/etc/ssh</tt></td>
   </tr>
   <tr>
-    <td><tt>['ssh']['port']</tt></td>
+    <td><tt>['ssh']['sshd']['port']</tt></td>
     <td>Integer</td>
     <td>The port the ssh daemon should listen on.</td>
     <td><tt>22</tt></td>
   </tr>
   <tr>
-    <td><tt>['ssh']['x11_forwarding']</tt></td>
+    <td><tt>['ssh']['sshd']['x11_forwarding']</tt></td>
     <td>yes/no</td>
     <td>Whether or not X11Forwarding should be allowed.</td>
     <td><tt>no</tt></td>
   </tr>
   <tr>
-    <td><tt>['ssh']['password_authentication']</tt></td>
+    <td><tt>['ssh']['sshd']['password_authentication']</tt></td>
     <td>yes/no</td>
     <td>Whether or not password authentication should be allowed.  Although it is yes by default, it is recommended to change it to false once a user with an appropriate key is setup.</td>
     <td><tt>yes</tt></td>
