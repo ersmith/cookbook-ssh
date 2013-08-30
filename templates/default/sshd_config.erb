@@ -2,7 +2,7 @@
 # See the sshd_config(5) manpage for details
 
 # What ports, IPs and protocols we listen for
-Port <%= port %>
+Port <%= @port %>
 # Use these options to restrict which interfaces/protocols sshd will bind to
 #ListenAddress ::
 #ListenAddress 0.0.0.0
@@ -48,7 +48,7 @@ PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 
 # Change to no to disable tunnelled clear text passwords
-PasswordAuthentication <%= password_authentication %>
+PasswordAuthentication <%= @password_authentication %>
 
 # Kerberos options
 #KerberosAuthentication no
@@ -60,7 +60,7 @@ PasswordAuthentication <%= password_authentication %>
 #GSSAPIAuthentication no
 #GSSAPICleanupCredentials yes
 
-X11Forwarding <%= x11_forwarding %>
+X11Forwarding <%= @x11_forwarding %>
 X11DisplayOffset 10
 PrintMotd no
 PrintLastLog yes
