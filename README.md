@@ -1,21 +1,14 @@
 ssh Cookbook
 ============
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+This cookbook configures ssh.  It has recipes for both the ssh_config and the sshd_config files.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - ssh needs toaster to brown your bagel.
+This cookbook currently makes some assumptions.  It assumes that the install is setup in such a way that the config files can be found under /etc/ssh.
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
+TODO
 
 e.g.
 #### ssh::default
@@ -27,20 +20,37 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['ssh']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['ssh']['config_location']</tt></td>
+    <td>String</td>
+    <td>The path to where ssh config files are located.</td>
+    <td><tt>/etc/ssh</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ssh']['port']</tt></td>
+    <td>Integer</td>
+    <td>The port the ssh daemon should listen on.</td>
+    <td><tt>22</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ssh']['x11_forwarding']</tt></td>
+    <td>yes/no</td>
+    <td>Whether or not X11Forwarding should be allowed.</td>
+    <td><tt>no</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ssh']['password_authentication']</tt></td>
+    <td>yes/no</td>
+    <td>Whether or not password authentication should be allowed.  Although it is yes by default, it is recommended to change it to false once a user with an appropriate key is setup.</td>
+    <td><tt>yes</tt></td>
   </tr>
 </table>
 
 Usage
 -----
 #### ssh::default
-TODO: Write usage instructions for each cookbook.
+As this recipe merely copies the config files it is fairly easy to use.  The basic usage consists of adding the recipe to the run_list.
 
 e.g.
-Just include `ssh` in your node's `run_list`:
 
 ```json
 {
@@ -51,18 +61,12 @@ Just include `ssh` in your node's `run_list`:
 }
 ```
 
+There are two separate recipes for the ssh and the sshd config files and are completely independent.
+
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+All contributions are welcome.  To contribute fork the repository, create a feature branch and the submit a pull request using Github when you are ready.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Edward Smith
