@@ -8,4 +8,5 @@ template "#{node[:ssh][:config_location]}/sshd_config" do
     :password_authentication => node[:ssh][:sshd][:password_authentication],
     :x11_forwarding => node[:ssh][:sshd][:x11_forwarding]
   })
+  notifies :restart, "service[ssh]"
 end
