@@ -24,5 +24,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+#  Recipes to install the ssh client and the ssh server
+include_recipe "ssh::ssh_client"
+include_recipe "ssh::ssh_server"
+
+# Configures ssh client and the server
 include_recipe "ssh::ssh_config"
 include_recipe "ssh::sshd_config"

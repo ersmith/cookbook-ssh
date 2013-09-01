@@ -1,19 +1,22 @@
 ssh Cookbook
 ============
-This cookbook configures ssh.  It has recipes for both the ssh_config and the sshd_config files.
+This cookbook installs and configures the openssh client and server.
 
 Requirements
 ------------
-This cookbook has no requirements except that ssh is installed.
+This cookbook requires that the package resource has a resource for the specific platform.  See [the opscode documentation](http://docs.opscode.com/resource_package.html) for a list of supported platforms.
 
 Attributes
 ----------
 See attributes/default.rb for default values.
 
-* `node['ssh']['config_location']` - The location of the config files.
-* `node['ssh']['sshd']['port']` - The port the ssh daemon will listen on.
-* `node['ssh']['sshd']['x11_forwarding']` - Whether or not X11Forwarding should be allowed.
-* `node['ssh']['sshd']['password_authentication']` - Whether or not password authentication is allowed.
+* `node[:ssh][:config_location]` - The location of the config files.
+* `node[:ssh][:client][:package_name]` - The package to use for the ssh client.
+* `node[:ssh][:server][:package_name]` - The package to use for the ssh server.
+* `node[:ssh][:server][:enable_on_boot]` - Whether or not the ssh server should be started on boot.
+* `node[:ssh][:sshd][:port]` - The port the ssh daemon will listen on.
+* `node[:ssh][:sshd][:x11_forwarding]` - Whether or not X11Forwarding should be allowed.
+* `node[:ssh][:sshd][:password_authentication]` - Whether or not password authentication is allowed.
 
 Usage
 -----
@@ -31,7 +34,7 @@ e.g.
 }
 ```
 
-There are two separate recipes for the ssh and the sshd config files and are completely independent.
+Each of the recipes is independent of the rest allowing them to be used individually.
 
 Contributing
 ------------
