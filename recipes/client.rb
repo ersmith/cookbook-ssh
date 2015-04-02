@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: ssh
-# Recipe:: default
+# Recipe:: client
 #
 # Copyright 2015, Edward Smith
 #
@@ -24,6 +24,24 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-#  Recipes to install the ssh client and the ssh server
-include_recipe "ssh::client"
-include_recipe "ssh::server"
+# Sets the package name if one isn't specified by the user
+if node[:ssh][:client][:package_name].nil?
+	case node["platform"]
+	when "debian", "ubuntu"
+		node.default[:ssh][:client][:package_name] = "openssh-client"
+	when "centos", "redhat", "fedora"
+		node.default[:ssh][:client][:package_name] = "openssh-clients"
+	end
+end
+
+# Installs the openssh client
+package node[:ssh][:client][:package_name] do
+  action :install
+end
+
+template "#{node[:ssh][:config_location]}/ssh_config" do
+  source 'ssh_config.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+end

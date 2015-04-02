@@ -4,7 +4,17 @@ This cookbook installs and configures the openssh client and server.
 
 Requirements
 ------------
-This cookbook requires that the package resource has a resource for the specific platform.  See [the opscode documentation](http://docs.opscode.com/resource_package.html) for a list of supported platforms.
+This cookbook requires that the package resource has a resource for the specific platform.  See [the opscode documentation](http://docs.opscode.com/resource_package.html) for a list of supported platforms.  It also makes the assumption that both the server and client place their configuration in the same directory.
+
+Recipes
+-------
+The ssh cookbook is made up of three recipes.
+
+### default
+This recipe runs both the `client` and `server` recipes.
+
+### default
+
 
 Attributes
 ----------
@@ -14,9 +24,10 @@ See attributes/default.rb for default values.
 * `node[:ssh][:client][:package_name]` - The package to use for the ssh client.
 * `node[:ssh][:server][:package_name]` - The package to use for the ssh server.
 * `node[:ssh][:server][:enable_on_boot]` - Whether or not the ssh server should be started on boot.
-* `node[:ssh][:sshd][:port]` - The port the ssh daemon will listen on.
-* `node[:ssh][:sshd][:x11_forwarding]` - Whether or not X11Forwarding should be allowed.
-* `node[:ssh][:sshd][:password_authentication]` - Whether or not password authentication is allowed.
+* `node[:ssh][:server][:config][:port]` - The port the ssh daemon will listen on.
+* `node[:ssh][:server][:config][:x11_forwarding]` - Whether or not X11Forwarding should be allowed.
+* `node[:ssh][:server][:config][:password_authentication]` - Whether or not password authentication is allowed.
+* `node[:ssh][:server][:config][:permit_root_login]` - Whether or not the root user should be able to login using ssh.
 
 Usage
 -----
