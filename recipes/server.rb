@@ -26,19 +26,19 @@
 
 service_name = "ssh"
 
-case node["platform"]
-	when "centos", "fedora", "redhat"
+case node["platform_family"]
+	when "rhel"
 		service_name = "sshd"
 end
 
 # Installs the openssh server
-package node[:ssh][:server][:package_name] do
+package node['ssh']['server']['package_name'] do
   action :install
 end
 
 # Configures the ssh service to start the ssh service and sets it up to be started at boot.
 service service_name do
-  if node[:ssh][:server][:enable_on_boot]
+  if node['ssh']['server']['enable_on_boot']
     action [:enable, :start]
   else
     action :start
@@ -46,16 +46,16 @@ service service_name do
 end
 
 # Setsup up the sshd configuration
-template "#{node[:ssh][:config_location]}/sshd_config" do
+template "#{node['ssh']['config_location']}/sshd_config" do
   source 'sshd_config.erb'
   mode '0644'
   owner 'root'
   group 'root'
   variables({
-    :port => node[:ssh][:server][:config][:port],
-    :password_authentication => node[:ssh][:server][:config][:password_authentication],
-    :x11_forwarding => node[:ssh][:server][:config][:x11_forwarding],
-    :permit_root_login => node[:ssh][:server][:config][:permit_root_login]
+    :port => node['ssh']['server']['config']['port'],
+    :password_authentication => node['ssh']['server']['config']['password_authentication'],
+    :x11_forwarding => node['ssh']['server']['config']['x11_forwarding'],
+    :permit_root_login => node['ssh']['server']['config']['permit_root_login']
   })
   notifies :restart, "service[#{service_name}]"
 end

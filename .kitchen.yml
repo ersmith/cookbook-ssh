@@ -10,7 +10,7 @@ platforms:
   - name: centos-6.6
 
 suites:
-  - name: default
+  - name: server
     run_list:
       - recipe[ssh::default]
     attributes:

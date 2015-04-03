@@ -25,21 +25,21 @@
 #
 
 # Sets the package name if one isn't specified by the user
-if node[:ssh][:client][:package_name].nil?
-	case node["platform"]
-	when "debian", "ubuntu"
-		node.default[:ssh][:client][:package_name] = "openssh-client"
-	when "centos", "redhat", "fedora"
-		node.default[:ssh][:client][:package_name] = "openssh-clients"
+if node['ssh']['client']['package_name'].nil?
+	case node["platform_family"]
+	when "debian"
+		node.default['ssh']['client']['package_name'] = "openssh-client"
+	when "rhel"
+		node.default['ssh']['client']['package_name'] = "openssh-clients"
 	end
 end
 
 # Installs the openssh client
-package node[:ssh][:client][:package_name] do
+package node['ssh']['client']['package_name'] do
   action :install
 end
 
-template "#{node[:ssh][:config_location]}/ssh_config" do
+template "#{node['ssh']['config_location']}/ssh_config" do
   source 'ssh_config.erb'
   mode '0644'
   owner 'root'
